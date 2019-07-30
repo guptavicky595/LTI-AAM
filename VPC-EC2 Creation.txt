@@ -1,0 +1,42 @@
+
+VPC & EC2 Creation document:-
+
+VPC :- 10.0.0.0/16 - V-LTI-VPC
+
+Subnet:-
+Private1  :- 10.0.1.0/24 - 1a - V-LTI-Private
+Private2  :- 10.0.2.0/24 - 1b - V-LTI-Private
+Public    :- 10.0.3.0/24 - 1a - V-LTI-Public
+
+RouteTable:-
+R1:- V-LTI-RT-Public :- 
+     Routes -> 10.0.0.0/16 (local)
+     Routes -> 0.0.0.0/0 - (IGW)
+  
+R2:- V-LTI-RT-Private:-
+     Routes -> 10.0.0.0/16 (local) 
+     Routes -> 0.0.0.0/0 - (Nat Gateway)
+
+
+Internet gateway:-
+    V-LTI--IGW :- Attach to our VPC 
+
+Elastic IP:- 3.213.153.84
+
+Create NatGateway
+    V-LTI-NAT  
+    Subnet - V-LTI-Public
+    Attach Elastic IP to NatGateway
+=======================================================
+
+EC2 Instance Creation:-
+
+Choose AMI- Amazon Linux
+Choose Instance Type:- t2.micro
+Configure Instance :- Select VPC amd Public subnet
+Add Storage
+Add Tags :- 
+Configure Security Group :- Create a New security group, with SSH - Port - 22 / HTTP /HTTPS/ All TCP / All traffic
+Review and Launch
+
+===================================================
